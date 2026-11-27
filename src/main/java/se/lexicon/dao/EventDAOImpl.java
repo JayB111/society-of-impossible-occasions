@@ -3,7 +3,7 @@ package se.lexicon.dao;
 import se.lexicon.config.DatabaseConnection;
 import se.lexicon.exception.DatabaseException;
 import se.lexicon.model.Event;
-
+import se.lexicon.exception.EventCapacityException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,25 +101,89 @@ public class EventDAOImpl implements EventDAO {
             throw new DatabaseException("Could not retrieve upcoming events.", e);
         }
     }
-    //Updates an existing event in the database
+    // Updates an event without allowing overbooking
     @Override
     public boolean update(Event event) {
-        String sql = """
+
+        String lockSql = """
+            SELECT id FROM events
+            WHERE id = ?
+            FOR UPDATE
+            """;
+
+        String countSql = """
+            SELECT COUNT(*) FROM invitations
+            WHERE event_id = ? AND status = 'ACCEPTED'
+            """;
+
+        String updateSql = """
             UPDATE events
             SET title = ?, description = ?, start_time = ?,
                 end_time = ?, location = ?, capacity = ?
             WHERE id = ?
             """;
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, event.getTitle());
-            statement.setString(2, event.getDescription());
-            statement.setTimestamp(3, Timestamp.valueOf(event.getStartTime()));
-            statement.setTimestamp(4, Timestamp.valueOf(event.getEndTime()));
-            statement.setString(5, event.getLocation());
-            statement.setInt(6, event.getCapacity());
-            statement.setInt(7, event.getId());
-            return statement.executeUpdate() > 0;
+
+        try (Connection connection = DatabaseConnection.getConnection()) {
+
+            connection.setAutoCommit(false);
+
+            try {
+
+                // Locks the event before checking capacity
+                try (PreparedStatement statement =
+                             connection.prepareStatement(lockSql)) {
+
+                    statement.setInt(1, event.getId());
+
+                    try (ResultSet resultSet = statement.executeQuery()) {
+
+                        if (!resultSet.next()) {
+                            connection.rollback();
+                            return false;
+                        }
+                    }
+                }
+
+                // Checks the number of accepted invitations
+                try (PreparedStatement statement =
+                             connection.prepareStatement(countSql)) {
+
+                    statement.setInt(1, event.getId());
+
+                    try (ResultSet resultSet = statement.executeQuery()) {
+
+                        if (resultSet.next()
+                                && resultSet.getInt(1) > event.getCapacity()) {
+
+                            throw new EventCapacityException(
+                                    "Capacity cannot be lower than the number of accepted participants.");
+                        }
+                    }
+                }
+                //Updates the event
+                boolean updated;
+                try (PreparedStatement statement =
+                             connection.prepareStatement(updateSql)) {
+                    statement.setString(1, event.getTitle());
+                    statement.setString(2, event.getDescription());
+                    statement.setTimestamp(3, Timestamp.valueOf(event.getStartTime()));
+                    statement.setTimestamp(4, Timestamp.valueOf(event.getEndTime()));
+                    statement.setString(5, event.getLocation());
+                    statement.setInt(6, event.getCapacity());
+                    statement.setInt(7, event.getId());
+                    updated = statement.executeUpdate() > 0;
+                }
+                connection.commit();
+                return updated;
+            } catch (SQLException | RuntimeException e) {
+                //Rolls back the transaction if an error occurs
+                try {
+                    connection.rollback();
+                } catch (SQLException rollbackException) {
+                    e.addSuppressed(rollbackException);
+                }
+                throw e;
+            }
         } catch (SQLException e) {
             throw new DatabaseException("Could not update event.", e);
         }
