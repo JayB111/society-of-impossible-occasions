@@ -115,11 +115,14 @@ erDiagram
 - JDBC prepared statements protect against SQL injection.
 - Transactions maintain consistency when accepting invitations.
 
-## 9. Database Security
+## ## 9. Database Security
 
-- Database credentials must not be committed to GitHub.
-- Database configuration will be stored separately.
-- Database connections and resources must be closed properly.
+- Database credentials are stored separately in db.properties.
+- The credentials file is excluded from Git using .gitignore.
+- Credential file protection has been verified.
+- A db.properties.example file provides a safe configuration template.
+- Try-with-resources automatically closes database connections and resources.
+- A dedicated database user with limited privileges is planned.
 
 ## 10. Implementation Status
 
@@ -131,5 +134,11 @@ erDiagram
 - [x] Create tables and constraints.
 - [x] Insert sample data.
 - [x] Test SQL queries.
-- [ ] Establish JDBC connection.
-- [ ] Implement database operations.
+- [x] Configure MySQL JDBC driver.
+- [x] Establish JDBC connection.
+- [x] Protect database credentials from Git.
+- [x] Create example configuration file.
+- [x] Test data retrieval through Java.
+- [ ] Implement database operations through DAO classes.
+- [ ] Implement transaction management.
+- [ ] Configure a dedicated database user.
