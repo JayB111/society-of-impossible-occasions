@@ -1,3 +1,4 @@
+
 # Project Requirements
 
 ## The Society of Impossible Occasions
@@ -6,45 +7,45 @@
 
 ## 1. Functional Requirements
 
-- [ ] Register individual participants.
-- [ ] Register organisation representatives.
-- [ ] Create and manage events.
+- [x] Register individual participants.
+- [x] Register organisation representatives.
+- [x] Create and manage events.
 - [x] Include event title, description, schedule, location and capacity.
-- [ ] Invite participants.
-- [ ] Manage PENDING, ACCEPTED and DECLINED responses.
-- [ ] Reject repeated invitations.
-- [ ] Enforce attendance limits.
-- [ ] Show future events.
-- [ ] Show invitees by event.
-- [ ] Show events by participant.
-- [ ] Show confirmed attendees.
+- [x] Invite participants.
+- [x] Manage PENDING, ACCEPTED and DECLINED responses.
+- [x] Reject repeated invitations.
+- [x] Enforce attendance limits.
+- [x] Show future events.
+- [x] Show invitees by event.
+- [x] Show events by participant.
+- [x] Show confirmed attendees.
 - [ ] Provide console navigation.
-- [ ] Persist application data.
+- [x] Persist application data.
 
 ## 2. Validation and Error Handling
 
 - [x] Validate event time ranges.
 - [x] Require positive capacity.
 - [ ] Handle incorrect user input.
-- [ ] Handle database failures.
-- [ ] Apply appropriate exceptions.
+- [x] Handle database failures.
+- [x] Apply appropriate exceptions.
 
 ## 3. Object-Oriented Programming
 
 - [x] Encapsulation.
 - [x] Abstraction.
-- [ ] Inheritance and interfaces.
+- [x] Inheritance and interfaces.
 - [x] Polymorphism.
 - [x] Appropriate object relationships.
 
 ## 4. Collections and Functional Programming
 
-- [ ] Use Java collections.
-- [ ] Use streams and lambda expressions.
-- [ ] Filter future events.
-- [ ] Find invitations by response.
-- [ ] Order events chronologically.
-- [ ] Calculate available places.
+- [x] Use Java collections.
+- [x] Use streams and lambda expressions.
+- [x] Filter future events.
+- [x] Find invitations by response.
+- [x] Order events chronologically.
+- [x] Calculate available places.
 
 ## 5. Database and JDBC
 
@@ -54,10 +55,10 @@
 - [x] Create invitations table.
 - [x] Define table relationships.
 - [x] Establish JDBC connectivity.
-- [ ] Implement INSERT operations.
-- [ ] Implement SELECT operations.
-- [ ] Implement UPDATE operations.
-- [ ] Implement DELETE operations.
+- [x] Implement INSERT operations.
+- [x] Implement SELECT operations.
+- [x] Implement UPDATE operations.
+- [x] Implement DELETE operations.
 
 ## 6. Code Quality
 
@@ -72,11 +73,23 @@
 - [x] Configure JUnit.
 - [x] Test participant validation.
 - [x] Test event validation.
-- [ ] Test duplicate invitation prevention.
-- [ ] Test capacity restrictions.
+- [x] Test duplicate invitation prevention.
+- [x] Test capacity restrictions.
 - [x] Test invitation status changes.
-- [ ] Test available places calculation.
+- [x] Test available places calculation.
 - [ ] Perform manual application testing.
+
+### Current Testing Results
+
+- 17 automated JUnit model tests passed.
+- 20 DAO methods manually tested.
+- 30 service-layer manual tests passed.
+- Concurrent invitation acceptance tested.
+- Duplicate invitation prevention verified.
+- Event capacity restrictions verified.
+- Original database record counts restored after testing.
+
+Full application testing will be performed after the console interface is implemented.
 
 ## 8. Git and GitHub
 
