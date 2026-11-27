@@ -140,7 +140,7 @@ erDiagram
 - [x] Create example configuration file.
 - [x] Test data retrieval through Java.
 - [x] Implement and test Participant DAO.
-- [ ] Implement and test Event DAO.
+- [x] Implement and test Event DAO.
 - [ ] Implement and test Invitation DAO.
 - [ ] Implement transaction management.
 - [ ] Configure a dedicated database user.

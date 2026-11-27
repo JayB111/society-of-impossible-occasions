@@ -1,22 +1,19 @@
 package se.lexicon;
 
-import se.lexicon.dao.ParticipantDAO;
-import se.lexicon.dao.ParticipantDAOImpl;
+import se.lexicon.dao.EventDAO;
+import se.lexicon.dao.EventDAOImpl;
+import se.lexicon.exception.DatabaseException;
 
 public class Main {
     public static void main(String[] args) {
-        ParticipantDAO participantDAO = new ParticipantDAOImpl();
-        //Tests retrieving an individual participant
-        System.out.println("Individual participant:");
-        participantDAO.findById(1).ifPresent(System.out::println);
-        //Tests retrieving an organisation participant
-        System.out.println("\nOrganisation participant:");
-        participantDAO.findById(5).ifPresent(System.out::println);
-        //Tests retrieving all participants
-        System.out.println("\nAll participants:");
-        participantDAO.findAll().forEach(System.out::println);
-        //Tests a nonexistent participant
-        System.out.println("\nMissing participant: "
-                + participantDAO.findById(999999).isEmpty());
+        EventDAO eventDAO = new EventDAOImpl();
+        //Tests deletion of an event with existing invitations
+        try {
+            boolean deleted = eventDAO.delete(1);
+            System.out.println("Event deleted: " + deleted);
+        } catch (DatabaseException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause().getMessage());
+        }
     }
 }
