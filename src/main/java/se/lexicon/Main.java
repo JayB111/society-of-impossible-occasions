@@ -1,28 +1,22 @@
 package se.lexicon;
 
-import se.lexicon.config.DatabaseConnection;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import se.lexicon.dao.ParticipantDAO;
+import se.lexicon.dao.ParticipantDAOImpl;
 
 public class Main {
     public static void main(String[] args) {
-        //SQL query to retrieve event titles
-        String sql = "SELECT title FROM events";
-        //Connects to the database and executes the query
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery()) {
-            System.out.println("Database connection successful!");
-            System.out.println("\nOur upcoming occasions:");
-            //Reads each row returned by the database
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("title"));
-            }
-        } catch (SQLException e) {
-            System.out.println("Database operation failed.");
-            System.out.println(e.getMessage());
-        }
+        ParticipantDAO participantDAO = new ParticipantDAOImpl();
+        //Tests retrieving an individual participant
+        System.out.println("Individual participant:");
+        participantDAO.findById(1).ifPresent(System.out::println);
+        //Tests retrieving an organisation participant
+        System.out.println("\nOrganisation participant:");
+        participantDAO.findById(5).ifPresent(System.out::println);
+        //Tests retrieving all participants
+        System.out.println("\nAll participants:");
+        participantDAO.findAll().forEach(System.out::println);
+        //Tests a nonexistent participant
+        System.out.println("\nMissing participant: "
+                + participantDAO.findById(999999).isEmpty());
     }
 }
