@@ -9,7 +9,7 @@
 - [ ] Register individual participants.
 - [ ] Register organisation representatives.
 - [ ] Create and manage events.
-- [ ] Include event title, description, schedule, location and capacity.
+- [x] Include event title, description, schedule, location and capacity.
 - [ ] Invite participants.
 - [ ] Manage PENDING, ACCEPTED and DECLINED responses.
 - [ ] Reject repeated invitations.
@@ -23,19 +23,19 @@
 
 ## 2. Validation and Error Handling
 
-- [ ] Validate event time ranges.
-- [ ] Require positive capacity.
+- [x] Validate event time ranges.
+- [x] Require positive capacity.
 - [ ] Handle incorrect user input.
 - [ ] Handle database failures.
 - [ ] Apply appropriate exceptions.
 
 ## 3. Object-Oriented Programming
 
-- [ ] Encapsulation.
-- [ ] Abstraction.
+- [x] Encapsulation.
+- [x] Abstraction.
 - [ ] Inheritance and interfaces.
-- [ ] Polymorphism.
-- [ ] Appropriate object relationships.
+- [x] Polymorphism.
+- [x] Appropriate object relationships.
 
 ## 4. Collections and Functional Programming
 
@@ -48,12 +48,12 @@
 
 ## 5. Database and JDBC
 
-- [ ] Design the relational database.
-- [ ] Create participants table.
-- [ ] Create events table.
-- [ ] Create invitations table.
-- [ ] Define table relationships.
-- [ ] Establish JDBC connectivity.
+- [x] Design the relational database.
+- [x] Create participants table.
+- [x] Create events table.
+- [x] Create invitations table.
+- [x] Define table relationships.
+- [x] Establish JDBC connectivity.
 - [ ] Implement INSERT operations.
 - [ ] Implement SELECT operations.
 - [ ] Implement UPDATE operations.
@@ -61,20 +61,20 @@
 
 ## 6. Code Quality
 
-- [ ] Follow Java naming conventions.
-- [ ] Separate class responsibilities.
-- [ ] Maintain readable code.
-- [ ] Document important logic.
+- [x] Follow Java naming conventions.
+- [x] Separate class responsibilities.
+- [x] Maintain readable code.
+- [x] Document important logic.
 - [ ] Remove unnecessary code.
 
 ## 7. Testing — Recommended
 
-- [ ] Configure JUnit.
-- [ ] Test participant validation.
-- [ ] Test event validation.
+- [x] Configure JUnit.
+- [x] Test participant validation.
+- [x] Test event validation.
 - [ ] Test duplicate invitation prevention.
 - [ ] Test capacity restrictions.
-- [ ] Test invitation status changes.
+- [x] Test invitation status changes.
 - [ ] Test available places calculation.
 - [ ] Perform manual application testing.
 
@@ -84,10 +84,10 @@
 - [x] Create a GitHub repository.
 - [x] Connect local and remote repositories.
 - [x] Push initial project setup.
-- [ ] Commit regularly in small increments.
-- [ ] Write descriptive commit messages.
-- [ ] Create a feature branch.
-- [ ] Merge the completed feature branch into main.
+- [x] Commit regularly in small increments.
+- [x] Write descriptive commit messages.
+- [x] Create a feature branch.
+- [x] Merge the completed feature branch into main.
 
 ## 9. Documentation
 
@@ -96,8 +96,8 @@
 - [x] Create preliminary flowchart.
 - [x] Create requirements checklist.
 - [ ] Finalise UML diagram.
-- [ ] Finalise application flowchart.
-- [ ] Document database structure.
+- [ ] Finalize application flowchart.
+- [x] Document database structure.
 - [ ] Include installation and setup instructions.
 - [ ] Document application usage.
 
@@ -105,7 +105,7 @@
 
 - [x] Establish fictional society concept.
 - [x] Establish visual theme.
-- [ ] Create themed sample events.
+- [x] Create themed sample events.
 - [ ] Design HTML/CSS interface.
 - [ ] Apply consistent black, dusty rose and ivory styling.
 - [ ] Create an elegant event catalogue.
