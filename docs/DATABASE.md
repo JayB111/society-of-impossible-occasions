@@ -115,7 +115,7 @@ erDiagram
 - JDBC prepared statements protect against SQL injection.
 - Transactions maintain consistency when accepting invitations.
 
-## ## 9. Database Security
+## 9. Database Security
 
 - Database credentials are stored separately in db.properties.
 - The credentials file is excluded from Git using .gitignore.
@@ -139,6 +139,8 @@ erDiagram
 - [x] Protect database credentials from Git.
 - [x] Create example configuration file.
 - [x] Test data retrieval through Java.
-- [ ] Implement database operations through DAO classes.
+- [x] Implement and test Participant DAO.
+- [x] Implement and test Event DAO.
+- [x] Implement and test Invitation DAO.
 - [ ] Implement transaction management.
 - [ ] Configure a dedicated database user.
